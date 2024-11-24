@@ -4,10 +4,10 @@ CXX = g++
 
 .PHONY: all
 
-all : $(OBJS)
+all: $(OBJS)
 
-%.o : %.cpp
-	$(CXX) -g -c -I./ $< -o $@
+%.o: %.cpp
+	$(CXX) -c -I./ $< -o $@
 
 .PHONY: clean
 clean:

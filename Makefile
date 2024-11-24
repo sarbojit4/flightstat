@@ -5,10 +5,10 @@ CXX = g++
 
 .PHONY: all
 
-all : $(OBJS)
+all: $(OBJS)
 	$(CXX) $^ -o $(TARGET)
 
-$(OBJS):
+$(OBJS): $(SRCS)
 	$(MAKE) -C src
 
 .PHONY: clean
