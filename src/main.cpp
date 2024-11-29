@@ -21,6 +21,7 @@
 #include <ctime>
 #include <iostream>
 #include <vector>
+#include <unistd.h>
 
 #include <RandomDataSource.h>
 
@@ -34,13 +35,12 @@ ParsedDatatype parse_data_FlightLabs(const std::string &data){
      data[status_pos+10] != '0' ||
      data[status_pos+11] != '0' ||
      data[success_pos+10] != 't' ||
-     data[success_pos+10] != 'r' ||
-     data[success_pos+10] != 'u' ||
-     data[success_pos+10] != 'e'){
+     data[success_pos+11] != 'r' ||
+     data[success_pos+12] != 'u' ||
+     data[success_pos+13] != 'e'){
     std::cout << "Unable to get data\n";
     return res;
   }
-
   auto dit = data.begin()+data.find("{",success_pos+20);
   for(; dit != data.end(); dit++){
     while(*dit == ' ' || *dit == '\t' || *dit == '\n' || *dit == '{' || *dit == '}') continue;
@@ -50,13 +50,13 @@ ParsedDatatype parse_data_FlightLabs(const std::string &data){
 
 int main(int argc, char **argv) {
   RandomDataSource ds;
-  std::cout << ds.get_data("ARN", "departure", std::time(nullptr)-86400, std::time(nullptr));
-  // while(1){
-  //    ParsedDatatype parsed_data =
-  //      parse_data_FlightLabs(ds.get_data(ARN, "departure", std::time(nullptr),
-  // 					 std::time(nullptr)-86400));
-  //   /* Run Passes */
-  // }
+  while(1){
+     ParsedDatatype parsed_data =
+       parse_data_FlightLabs(ds.get_data("ARN", "departure", std::time(nullptr),
+					 std::time(nullptr)-86400));
+     sleep(10);
+    /* Run Passes */
+  }
 }
 
  
