@@ -28,6 +28,8 @@
 
 #ifndef RANDOM_DATA_SOURCE_H
 #define RANDOM_DATA_SOURCE_H
+
+/* Generate random data in the format of FlightLabs API (https://app.goflightlabs.com/) */
 class RandomDataSource : public DataSource {
  private:
   struct AirportData {

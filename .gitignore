@@ -1,0 +1,15 @@
+*~
+*.o
+*.dwo
+*.log
+*.trs
+*.aux
+*.toc
+Makefile
+compile
+depcomp
+missing
+update_tags.sh
+TAGS
+flightstat
+.depend
