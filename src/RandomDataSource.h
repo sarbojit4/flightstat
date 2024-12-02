@@ -17,6 +17,9 @@
  * <http://www.gnu.org/licenses/>.
  */
 
+#ifndef RANDOM_DATA_SOURCE_H
+#define RANDOM_DATA_SOURCE_H
+
 #include <cstdarg>
 #include <map>
 #include <vector>
@@ -25,9 +28,6 @@
 #include <string>
 
 #include <DataSource.h>
-
-#ifndef RANDOM_DATA_SOURCE_H
-#define RANDOM_DATA_SOURCE_H
 
 /* Generate random data in the format of FlightLabs API (https://app.goflightlabs.com/) */
 class RandomDataSource : public DataSource {

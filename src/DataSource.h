@@ -19,10 +19,12 @@
 
 #ifndef DATA_SOURCE_H
 #define DATA_SOURCE_H
+
 class DataSource{
  public:
   virtual std::string get_data(std::string code, std::string type,
 			       time_t date_from, time_t date_to,
 			       std::string airline_iata = "") = 0;
 };
+
 #endif

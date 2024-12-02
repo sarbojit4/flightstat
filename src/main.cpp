@@ -23,38 +23,18 @@
 #include <vector>
 #include <unistd.h>
 
+#include <DataParser.h>
 #include <RandomDataSource.h>
 
-typedef std::vector<std::vector<std::string>> ParsedDatatype;
-
-ParsedDatatype parse_data_FlightLabs(const std::string &data){
-  ParsedDatatype res;
-  unsigned status_pos = data.find("status");
-  unsigned success_pos = data.find("success",status_pos);
-  if(data[status_pos+9] != '2' ||
-     data[status_pos+10] != '0' ||
-     data[status_pos+11] != '0' ||
-     data[success_pos+10] != 't' ||
-     data[success_pos+11] != 'r' ||
-     data[success_pos+12] != 'u' ||
-     data[success_pos+13] != 'e'){
-    std::cout << "Unable to get data\n";
-    return res;
-  }
-  auto dit = data.begin()+data.find("{",success_pos+20);
-  for(; dit != data.end(); dit++){
-    while(*dit == ' ' || *dit == '\t' || *dit == '\n' || *dit == '{' || *dit == '}') continue;
-  }
-  return res;
-}
+typedef std::vector<std::string> ParsedDatatype;
 
 int main(int argc, char **argv) {
   RandomDataSource ds;
   while(1){
-     ParsedDatatype parsed_data =
-       parse_data_FlightLabs(ds.get_data("ARN", "departure", std::time(nullptr),
-					 std::time(nullptr)-86400));
-     sleep(10);
+    DataParser data_parser;
+    data_parser.parse(ds.get_data("ARN", "departure", std::time(nullptr),
+				  std::time(nullptr)-86400));
+    sleep(10);
     /* Run Passes */
   }
 }

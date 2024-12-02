@@ -43,6 +43,8 @@ RandomDataSource::get_data(std::string code, std::string type,
 	{
 	  indent += "    ";
 	  data += indent + "\"airport\": {\n"; 
+	  data += indent + "    \"iata\": \"" +
+	    airports.at(random_airport_index).code + "\"\n";
 	  data += indent + "    \"name\": \"" +
 	    airports.at(random_airport_index).name + "\"\n" + indent + "},\n";
 	}
