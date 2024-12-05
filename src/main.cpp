@@ -7,7 +7,7 @@
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Nidhugg is distributed in the hope that it will be useful, but
+ * FlightStat is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
@@ -34,8 +34,8 @@ int main(int argc, char **argv) {
     DataParser data_parser;
     data_parser.parse(ds.get_data("ARN", "departure", std::time(nullptr),
 				  std::time(nullptr)-86400));
-    sleep(10);
-    /* Run Passes */
+    
+    sleep(10);    /* Run Passes */
   }
 }
 
