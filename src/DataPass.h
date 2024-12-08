@@ -17,30 +17,24 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#include <cstdlib>
-#include <ctime>
+#ifndef DATA_PASS_H
+#define DATA_PASS_H
+
+#include <cstdio>
+#include <fstream>
 #include <iostream>
+#include <memory>
+#include <mysqlx/xdevapi.h>
 #include <vector>
-#include <unistd.h>
 
 #include <DataParser.h>
-#include <DataPass.h>
-#include <RandomDataSource.h>
 
-typedef std::vector<std::string> ParsedDatatype;
-
-int main(int argc, char **argv) {
-  RandomDataSource ds;
-  DataParser data_parser;
-  DataPass data_pass;
-  while(1){
-    data_parser.parse(ds.get_data("ARN", "departure", std::time(nullptr),
-				  std::time(nullptr)-86400));
-    /* Run Passes */
-    data_pass.initialize();
-    data_pass.flightDepartureStoragePass("ARN", data_parser.parsed_data);
-    sleep(10);    
-  }
-}
-
- 
+class DataPass {
+ public:
+  bool initialize();
+  bool flightDepartureStoragePass(const std::string &src,
+				  const std::vector<DataParser::DataType> &parsed_data);
+ private:
+  std::unique_ptr<mysqlx::Session> sess = nullptr;
+};
+#endif

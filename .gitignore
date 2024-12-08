@@ -13,3 +13,4 @@ update_tags.sh
 TAGS
 flightstat
 .depend
+databaseconfig

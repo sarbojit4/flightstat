@@ -3,11 +3,12 @@ OBJS = $(SRCS:.cpp=.o)
 TARGET = flightstat
 CXX = g++
 CXXFLAGS = -Wall -O2
+LDFLAGS = -lmysqlcppconnx
 
 .PHONY: all
 
 all: $(OBJS) .depend
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(TARGET)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(TARGET) $(LDFLAGS)
 
 .PHONY: .depend
 
